@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
+import Counter from './Counter.jsx';
+
 const App = () => {
   return (
-    <div>
-      <h1>This is just for testing</h1>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '20%'}}>
+      <Counter />
     </div>
   );
 };
