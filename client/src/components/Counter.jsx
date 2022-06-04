@@ -1,10 +1,11 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 const Button = styled.button`
   border-radius: 12px;
   transition: .2s;
   padding: 2%;
+  margin-top: '4%';
   &:hover {
     transform: scale(1.25);
     border: 2px ridge red;
@@ -14,7 +15,16 @@ const Button = styled.button`
 `;
 
 const Counter = () => {
+  const dispatch = useDispatch();
   const counter = useSelector(state => state.counter);
+
+  const incrementHandler = () => {
+    dispatch({ type: 'increment' });
+  };
+
+  const decrementHandler = () => {
+    dispatch({ type: 'decrement' })
+  };
 
   const toggleCounterHandler = () => {};
 
@@ -23,6 +33,18 @@ const Counter = () => {
       <h1 style={{color: 'red', borderBottom: '4px ridge red', borderRadius: '12px'}}>Redux Counter</h1>
       <div style={{textAlign: 'center'}}>
         <h3>{counter}</h3>
+      </div>
+      <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: '6%'}}>
+        <Button style={{marginLeft: '6%', marginRight: '2%'}}
+          onClick={incrementHandler}
+        >
+          Increment
+        </Button>
+        <Button style={{marginLeft: '6%', marginRight: '2%'}}
+          onClick={decrementHandler}
+        >
+          Decrement
+        </Button>
       </div>
       <Button style={{borderRadius: '12px'}} onClick={toggleCounterHandler}>Toggle Counter</Button>
     </main>

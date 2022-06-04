@@ -58,12 +58,25 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-var Button = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].button(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  transition: .2s;\n  padding: 2%;\n  &:hover {\n    transform: scale(1.25);\n    border: 2px ridge red;\n    box-shadow: 4px 4px 7px red, 0 0 1em white, 0 0 0.2em white;\n    color: red;\n  }\n"])));
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_2__["default"].button(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border-radius: 12px;\n  transition: .2s;\n  padding: 2%;\n  margin-top: '4%';\n  &:hover {\n    transform: scale(1.25);\n    border: 2px ridge red;\n    box-shadow: 4px 4px 7px red, 0 0 1em white, 0 0 0.2em white;\n    color: red;\n  }\n"])));
 
 var Counter = function Counter() {
+  var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useDispatch)();
   var counter = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
     return state.counter;
   });
+
+  var incrementHandler = function incrementHandler() {
+    dispatch({
+      type: 'increment'
+    });
+  };
+
+  var decrementHandler = function decrementHandler() {
+    dispatch({
+      type: 'decrement'
+    });
+  };
 
   var toggleCounterHandler = function toggleCounterHandler() {};
 
@@ -88,6 +101,29 @@ var Counter = function Counter() {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
         children: counter
       })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      style: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '6%'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Button, {
+        style: {
+          marginLeft: '6%',
+          marginRight: '2%'
+        },
+        onClick: incrementHandler,
+        children: "Increment"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Button, {
+        style: {
+          marginLeft: '6%',
+          marginRight: '2%'
+        },
+        onClick: decrementHandler,
+        children: "Decrement"
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Button, {
       style: {
         borderRadius: '12px'
@@ -145,9 +181,7 @@ var counterSubscriber = function counterSubscriber() {
   console.log('latestState -> ', latestState);
 };
 
-store.subscribe(counterSubscriber); // store.dispatch({ type: 'increment' });
-// store.dispatch({ type: 'decrement'});
-
+store.subscribe(counterSubscriber);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
 /***/ }),
