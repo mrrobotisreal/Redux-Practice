@@ -165,11 +165,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
+var initialState = {
+  counter: 0,
+  showCounter: true
+};
 
 var counterReducer = function counterReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    counter: 0
-  };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   if (action.type === 'increment') {
