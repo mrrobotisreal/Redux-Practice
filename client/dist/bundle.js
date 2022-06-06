@@ -174,25 +174,71 @@ var counterReducer = function counterReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
-  if (action.type === 'increment') {
-    return {
-      counter: state.counter + 1
-    };
-  }
+  // if (action.type === 'increment') {
+  //   return {
+  //     counter: state.counter + 1,
+  //     showCounter: state.showCounter,
+  //   };
+  // }
+  // if (action.type === 'increase') {
+  //   return {
+  //     counter: state.counter + action.amount,
+  //     showCounter: state.showCounter,
+  //   }
+  // }
+  // if (action.type === 'decrement') {
+  //   return {
+  //     counter: state.counter - 1,
+  //     showCounter: state.showCounter,
+  //   };
+  // }
+  // if (action.type === 'toggle') {
+  //   return {
+  //     counter: state.counter,
+  //     showCounter: action.toggle,
+  //   }
+  // }
+  switch (action.type) {
+    case 'increment':
+      return {
+        counter: state.counter + 1,
+        showCounter: state.showCounter
+      };
+      break;
 
-  if (action.type === 'increase') {
-    return {
-      counter: state.counter + action.amount
-    };
-  }
+    case 'increase':
+      return {
+        counter: state.counter + action.amount,
+        showCounter: state.showCounter
+      };
+      break;
 
-  if (action.type === 'decrement') {
-    return {
-      counter: state.counter - 1
-    };
-  }
+    case 'decrement':
+      return {
+        counter: state.counter - 1,
+        showCounter: state.showCounter
+      };
+      break;
 
-  return state;
+    case 'toggle':
+      if (state.showCounter === true) {
+        return {
+          counter: state.counter,
+          showCounter: false
+        };
+        break;
+      } else {
+        return {
+          counter: state.counter,
+          showCounter: true
+        };
+        break;
+      }
+
+    default:
+      return state;
+  } // return state;
+
 };
 
 var store = (0,redux__WEBPACK_IMPORTED_MODULE_0__.createStore)(counterReducer);
