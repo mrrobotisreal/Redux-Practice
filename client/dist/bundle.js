@@ -72,6 +72,13 @@ var Counter = function Counter() {
     });
   };
 
+  var increaseHandler = function increaseHandler() {
+    dispatch({
+      type: 'increase',
+      amount: 5
+    });
+  };
+
   var decrementHandler = function decrementHandler() {
     dispatch({
       type: 'decrement'
@@ -121,6 +128,13 @@ var Counter = function Counter() {
           marginLeft: '6%',
           marginRight: '2%'
         },
+        onClick: increaseHandler,
+        children: "Increase By 5"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Button, {
+        style: {
+          marginLeft: '6%',
+          marginRight: '2%'
+        },
         onClick: decrementHandler,
         children: "Decrement"
       })]
@@ -161,6 +175,12 @@ var counterReducer = function counterReducer() {
   if (action.type === 'increment') {
     return {
       counter: state.counter + 1
+    };
+  }
+
+  if (action.type === 'increase') {
+    return {
+      counter: state.counter + action.amount
     };
   }
 

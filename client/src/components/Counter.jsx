@@ -22,6 +22,10 @@ const Counter = () => {
     dispatch({ type: 'increment' });
   };
 
+  const increaseHandler = () => {
+    dispatch({ type: 'increase', amount: 5});
+  };
+
   const decrementHandler = () => {
     dispatch({ type: 'decrement' })
   };
@@ -39,6 +43,11 @@ const Counter = () => {
           onClick={incrementHandler}
         >
           Increment
+        </Button>
+        <Button style={{marginLeft: '6%', marginRight: '2%'}}
+          onClick={increaseHandler}
+        >
+          Increase By 5
         </Button>
         <Button style={{marginLeft: '6%', marginRight: '2%'}}
           onClick={decrementHandler}
