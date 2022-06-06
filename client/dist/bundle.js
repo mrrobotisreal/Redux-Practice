@@ -85,7 +85,11 @@ var Counter = function Counter() {
     });
   };
 
-  var toggleCounterHandler = function toggleCounterHandler() {};
+  var toggleCounterHandler = function toggleCounterHandler() {
+    dispatch({
+      type: 'toggle'
+    });
+  };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("main", {
     style: {
@@ -221,19 +225,11 @@ var counterReducer = function counterReducer() {
       break;
 
     case 'toggle':
-      if (state.showCounter === true) {
-        return {
-          counter: state.counter,
-          showCounter: false
-        };
-        break;
-      } else {
-        return {
-          counter: state.counter,
-          showCounter: true
-        };
-        break;
-      }
+      console.log('showCounter is: ', state.showCounter);
+      return {
+        counter: state.counter,
+        showCounter: !state.showCounter
+      };
 
     default:
       return state;

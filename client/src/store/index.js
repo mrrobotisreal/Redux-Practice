@@ -47,19 +47,11 @@ const counterReducer = (state = initialState, action) => {
       };
       break;
     case 'toggle':
-      if (state.showCounter === true) {
-        return {
-          counter: state.counter,
-          showCounter: false,
-        };
-        break;
-      } else {
-        return {
-          counter: state.counter,
-          showCounter: true,
-        };
-        break;
-      }
+      console.log('showCounter is: ', state.showCounter);
+      return {
+        counter: state.counter,
+        showCounter: !state.showCounter,
+      };
     default:
       return state;
   }

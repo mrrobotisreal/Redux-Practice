@@ -30,7 +30,9 @@ const Counter = () => {
     dispatch({ type: 'decrement' })
   };
 
-  const toggleCounterHandler = () => {};
+  const toggleCounterHandler = () => {
+    dispatch({ type: 'toggle'});
+  };
 
   return (
     <main style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
