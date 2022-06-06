@@ -65,6 +65,9 @@ var Counter = function Counter() {
   var counter = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
     return state.counter;
   });
+  var show = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
+    return state.showCounter;
+  });
 
   var incrementHandler = function incrementHandler() {
     dispatch({
@@ -109,7 +112,7 @@ var Counter = function Counter() {
       style: {
         textAlign: 'center'
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+      children: show && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
         children: counter
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {

@@ -17,6 +17,7 @@ const Button = styled.button`
 const Counter = () => {
   const dispatch = useDispatch();
   const counter = useSelector(state => state.counter);
+  const show = useSelector(state => state.showCounter);
 
   const incrementHandler = () => {
     dispatch({ type: 'increment' });
@@ -38,7 +39,7 @@ const Counter = () => {
     <main style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column'}}>
       <h1 style={{color: 'red', borderBottom: '4px ridge red', borderRadius: '12px'}}>Redux Counter</h1>
       <div style={{textAlign: 'center'}}>
-        <h3>{counter}</h3>
+        {show && <h3>{counter}</h3>}
       </div>
       <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: '6%'}}>
         <Button style={{marginLeft: '6%', marginRight: '2%'}}
