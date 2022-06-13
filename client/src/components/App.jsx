@@ -10,9 +10,10 @@ const App = () => {
   const isAuth = useSelector(state => state.auth.isAuthenticated);
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '20%'}}>
+    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', paddingTop: '8%', flexDirection: 'column'}}>
       <Header />
-      <Auth />
+      {!isAuth && <Auth />}
+      {isAuth && <UserProfile />}
       <Counter />
     </div>
   );
