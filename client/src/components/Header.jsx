@@ -6,7 +6,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.auth.isAuthenticated);
 
-  const logoutHandler = () => {};
+  const logoutHandler = () => {
+    dispatch(authActions.logout());
+  };
 
   return (
     <header style={{margin: '2%'}}>

@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/index */ "./client/src/store/index.js");
+/* harmony import */ var _store_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/auth */ "./client/src/store/auth.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -73,7 +73,7 @@ var Auth = function Auth() {
 
   var loginHandler = function loginHandler(event) {
     event.preventDefault();
-    dispatch(_store_index__WEBPACK_IMPORTED_MODULE_1__.authActions.login());
+    dispatch(_store_auth__WEBPACK_IMPORTED_MODULE_1__.authActions.login());
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("main", {
@@ -121,7 +121,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/index */ "./client/src/store/index.js");
+/* harmony import */ var _store_counter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/counter */ "./client/src/store/counter.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 var _templateObject;
 
@@ -144,19 +144,19 @@ var Counter = function Counter() {
   });
 
   var incrementHandler = function incrementHandler() {
-    dispatch(_store_index__WEBPACK_IMPORTED_MODULE_1__.counterActions.increment());
+    dispatch(_store_counter__WEBPACK_IMPORTED_MODULE_1__.counterActions.increment());
   };
 
   var increaseHandler = function increaseHandler() {
-    dispatch(_store_index__WEBPACK_IMPORTED_MODULE_1__.counterActions.increase(10));
+    dispatch(_store_counter__WEBPACK_IMPORTED_MODULE_1__.counterActions.increase(10));
   };
 
   var decrementHandler = function decrementHandler() {
-    dispatch(_store_index__WEBPACK_IMPORTED_MODULE_1__.counterActions.decrement());
+    dispatch(_store_counter__WEBPACK_IMPORTED_MODULE_1__.counterActions.decrement());
   };
 
   var toggleCounterHandler = function toggleCounterHandler() {
-    dispatch(_store_index__WEBPACK_IMPORTED_MODULE_1__.counterActions.toggleCounter());
+    dispatch(_store_counter__WEBPACK_IMPORTED_MODULE_1__.counterActions.toggleCounter());
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("main", {
@@ -249,7 +249,9 @@ var Header = function Header() {
     return state.auth.isAuthenticated;
   });
 
-  var logoutHandler = function logoutHandler() {};
+  var logoutHandler = function logoutHandler() {
+    dispatch(_store_index__WEBPACK_IMPORTED_MODULE_1__.authActions.logout());
+  };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("header", {
     style: {
@@ -306,21 +308,53 @@ var UserProfile = function UserProfile() {
 
 /***/ }),
 
-/***/ "./client/src/store/index.js":
-/*!***********************************!*\
-  !*** ./client/src/store/index.js ***!
-  \***********************************/
+/***/ "./client/src/store/auth.js":
+/*!**********************************!*\
+  !*** ./client/src/store/auth.js ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "authActions": () => (/* binding */ authActions),
-/* harmony export */   "counterActions": () => (/* binding */ counterActions),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 
+var initialAuthState = {
+  isAuthenticated: false
+};
+var authSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
+  name: 'authentication',
+  initialState: initialAuthState,
+  reducers: {
+    login: function login(state) {
+      state.isAuthenticated = true;
+    },
+    logout: function logout(state) {
+      state.isAuthenticated = false;
+    }
+  }
+});
+var authActions = authSlice.actions;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (authSlice.reducer);
+
+/***/ }),
+
+/***/ "./client/src/store/counter.js":
+/*!*************************************!*\
+  !*** ./client/src/store/counter.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "counterActions": () => (/* binding */ counterActions),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 
 var initialCounterState = {
   counter: 0,
@@ -344,29 +378,34 @@ var counterSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)
     }
   }
 });
-var initialAuthState = {
-  isAuthenticated: false
-};
-var authSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
-  name: 'authentication',
-  initialState: initialAuthState,
-  reducers: {
-    login: function login(state) {
-      state.isAuthenticated = true;
-    },
-    logout: function logout(state) {
-      state.isAuthenticated = false;
-    }
-  }
-});
-var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.configureStore)({
-  reducer: {
-    counter: counterSlice.reducer,
-    auth: authSlice.reducer
-  }
-});
 var counterActions = counterSlice.actions;
-var authActions = authSlice.actions;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (counterSlice.reducer);
+
+/***/ }),
+
+/***/ "./client/src/store/index.js":
+/*!***********************************!*\
+  !*** ./client/src/store/index.js ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
+/* harmony import */ var _counter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./counter */ "./client/src/store/counter.js");
+/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth */ "./client/src/store/auth.js");
+
+
+
+var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_2__.configureStore)({
+  reducer: {
+    counter: _counter__WEBPACK_IMPORTED_MODULE_0__["default"],
+    auth: _auth__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
 /***/ }),

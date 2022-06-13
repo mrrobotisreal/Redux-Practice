@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { counterActions } from '../store/index';
+import { counterActions } from '../store/counter';
 
 const Button = styled.button`
   border-radius: 12px;
