@@ -14,25 +14,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Counter_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Counter.jsx */ "./client/src/components/Counter.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _Header_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header.jsx */ "./client/src/components/Header.jsx");
+/* harmony import */ var _Header_jsx__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Header_jsx__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Auth_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Auth.jsx */ "./client/src/components/Auth.jsx");
+/* harmony import */ var _Auth_jsx__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Auth_jsx__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Counter_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Counter.jsx */ "./client/src/components/Counter.jsx");
+/* harmony import */ var _UserProfile_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./UserProfile.jsx */ "./client/src/components/UserProfile.jsx");
+/* harmony import */ var _UserProfile_jsx__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_UserProfile_jsx__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
 
 
 
 
 var App = function App() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  var isAuth = (0,react_redux__WEBPACK_IMPORTED_MODULE_1__.useSelector)(function (state) {
+    return state.auth.isAuthenticated;
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     style: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       paddingTop: '20%'
     },
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Counter_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {})
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)((_Header_jsx__WEBPACK_IMPORTED_MODULE_2___default()), {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)((_Auth_jsx__WEBPACK_IMPORTED_MODULE_3___default()), {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Counter_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {})]
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
+
+/***/ }),
+
+/***/ "./client/src/components/Auth.jsx":
+/*!****************************************!*\
+  !*** ./client/src/components/Auth.jsx ***!
+  \****************************************/
+/***/ (() => {
+
+
 
 /***/ }),
 
@@ -65,10 +90,10 @@ var Button = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].button(_t
 var Counter = function Counter() {
   var dispatch = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useDispatch)();
   var counter = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
-    return state.counter;
+    return state.counter.counter;
   });
   var show = (0,react_redux__WEBPACK_IMPORTED_MODULE_0__.useSelector)(function (state) {
-    return state.showCounter;
+    return state.counter.showCounter;
   });
 
   var incrementHandler = function incrementHandler() {
@@ -152,6 +177,26 @@ var Counter = function Counter() {
 
 /***/ }),
 
+/***/ "./client/src/components/Header.jsx":
+/*!******************************************!*\
+  !*** ./client/src/components/Header.jsx ***!
+  \******************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./client/src/components/UserProfile.jsx":
+/*!***********************************************!*\
+  !*** ./client/src/components/UserProfile.jsx ***!
+  \***********************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
 /***/ "./client/src/store/index.js":
 /*!***********************************!*\
   !*** ./client/src/store/index.js ***!
@@ -161,19 +206,20 @@ var Counter = function Counter() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "authActions": () => (/* binding */ authActions),
 /* harmony export */   "counterActions": () => (/* binding */ counterActions),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @reduxjs/toolkit */ "./node_modules/@reduxjs/toolkit/dist/redux-toolkit.esm.js");
 
 
-var initialState = {
+var initialCounterState = {
   counter: 0,
   showCounter: true
 };
 var counterSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
   name: 'counter',
-  initialState: initialState,
+  initialState: initialCounterState,
   reducers: {
     increment: function increment(state) {
       state.counter++;
@@ -189,10 +235,29 @@ var counterSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)
     }
   }
 });
+var initialAuthState = {
+  isAuthenticated: false
+};
+var authSlice = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.createSlice)({
+  name: 'authentication',
+  initialState: initialAuthState,
+  reducers: {
+    login: function login(state) {
+      state.isAuthenticated = true;
+    },
+    logout: function logout(state) {
+      state.isAuthenticated = false;
+    }
+  }
+});
 var store = (0,_reduxjs_toolkit__WEBPACK_IMPORTED_MODULE_0__.configureStore)({
-  reducer: counterSlice.reducer
+  reducer: {
+    counter: counterSlice.reducer,
+    auth: authSlice.reducer
+  }
 });
 var counterActions = counterSlice.actions;
+var authActions = authSlice.actions;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
 /***/ }),
